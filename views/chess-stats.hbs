@@ -1,0 +1,121 @@
+
+  <body>
+    <div class="d-flex justify-content-center mt-2 projtitle"><h2>Chess Stats</h2></div>
+
+
+
+
+      <div class="d-flex justify-content-center">
+        <img class='chessgraph responsive' src="images/jn_chess_stats/barplot.png" alt="">
+
+
+
+        <img class='chessgraph responsive' src="images/jn_chess_stats/plotcircles.png" alt="">
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="container-fluid">
+      <div class="d-flex justify-content-center bg-light mb-3">
+
+
+
+
+
+      <div class="context text-end pt-5">the project
+
+      </div>
+      <div class="p-5 content" >
+        <p>Tournament Stats is a command line tool that allows a user to input a chess player’s USCF (United States Chess Federation) ID (identification) and generate graphs based on their tournament history - specifically, their performance against other players based on rating, both for the absolute ratings for rating differentials.                 Check out the <a href="https://github.com/bigjmn/chess-tourney-stats">Github repo</a>
+</p>
+
+      <!-- Content HERE -->
+
+
+
+
+      </div>
+        </div>
+
+        <div class="d-flex justify-content-center bg-light mb-3">
+
+
+
+
+
+        <div class="context text-end pt-5">what I used
+
+        </div>
+        <div class="p-5 content" >
+          <p>I used BeautifulSoup for the web scraping, and lxml as the parser. I should make clear that all the data is publicly available on the USCF website - it’s just not very well organized. The USCF player stats page shows a player’s history against opponents based on the opponent’s rating - the result of the game and the tournament id - but doesn’t give the player’s rating at the time of the match. On a separate page, a player can look up their tournament history, which shows their pre and post rating for each tournament. Combining this data lets us create the graphs above.</p>
+          <p>The graphs are generated using Matplotlib and PANDAS. This may be a bit of a sledgehammer to crack a nut situation, but I might expand this tool to feature some more robust data analysis, so I’m fine with having the sledgehammer already implemented. </p>
+
+
+    <!-- HERRE -->
+
+
+
+
+
+        </div>
+          </div>
+
+          <div class="d-flex justify-content-center bg-light mb-3">
+
+
+
+
+
+          <div class="context text-end pt-5">thoughts
+
+          </div>
+          <div class="p-5 content" >
+            <p>It gets the job done! The job is quite niche to be fair, but it gets it done. Although there are a few limitations. For the graph based on absolute ratings, the rating window only shows games where both players are between 1000 and 2600. There are of course many players rated below 1000. Ideally, the rating window would adjust itself automatically to encompass the majority of the player’s games. I should be able to implement this without too much difficulty. The graph of rating differentials should currently work for everyone. </p>
+
+    <!-- HERE -->
+
+
+          </div>
+            </div>
+
+            <div class="d-flex justify-content-center bg-light mb-3">
+
+
+
+
+
+            <div class="context text-end pt-5">next steps
+
+            </div>
+            <div class="p-5 content" >
+              <p>For this particular tool, the main issue is the rating window. I should also make the graph labels and titles more clear. This was actually an offshoot of a much larger and much more ambitious project I’m working on: creating a chess playing program that plays like me.
+</p>
+
+          <!-- Here -->
+
+
+
+            </div>
+              </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+  </body>
+</html>

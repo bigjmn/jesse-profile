@@ -1,0 +1,119 @@
+.project{
+  height: 400px;
+  width: 450px;
+}
+#mazevid{
+  width: auto;
+  height: 220px;
+  margin-left: 60px;
+}
+
+.project-header{
+  border-style:solid;
+  height: 450px;
+
+
+}
+.modeholder{
+  float: left;
+  padding: 20px;
+  border-right: dashed;
+}
+.tetrismodepic{
+  width: 360px;
+}
+.context{
+  font-style: italic;
+  font-weight: 200;
+  font-size: 34px;
+  max-width: 400px
+
+}
+.sectionheader{
+  font-style: italic;
+  font-weight: none;
+  font-size: 34px;
+
+}
+
+.content{
+  max-width: 800px;
+
+}
+
+#mazeframe{
+  width: 1300px;
+  height: 700px;
+  margin-top: 10px;
+
+  transform: scale(0.6);
+  transform-origin: top;
+}
+.responsive{
+  width: 100%;
+  height: auto;
+}
+#drawframe{
+  width: 1100px;
+  height: 400px;
+  margin-top: 10px;
+  margin-left: 60px;
+
+
+  transform: scale(1);
+  transform-origin: top;
+
+}
+
+
+* {
+    background-color: #e4e4e4;
+    font-size: 16px;
+    font-family: "helvetica neue",helvetica,arial,sans-serif;
+    font-weight: 400;
+}
+body{
+  background-color: #e4e4e4
+}
+
+#tetrisicon{
+  height: 220px;
+  width: auto;
+  margin-left: 60px;
+
+}
+
+.graphholder{
+  float: left;
+  margin-left: 20px;
+
+}
+.chessgraph{
+  max-width: 30%;
+  height: auto;
+  float: left;
+}
+.projectholder{
+
+}
+
+.skillicon{
+  width:60px;
+  height:auto;
+
+}
+.snapshot{
+  align-content: center;
+  
+  justify-content: center;
+}
+#chessbar{
+  margin-left: 60px;
+}
+
+#bio{
+  max-width: 700px;
+
+  justify-content: flex-start;
+}
+ul li { padding: 5px 0px; }

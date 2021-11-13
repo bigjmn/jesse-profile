@@ -1,0 +1,538 @@
+<html>
+
+<link rel="stylesheet" href="drawpreviewstyle.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <script type="text/javascript">
+      function reverseString(str) {
+    return str.split("").reverse().join("");
+
+}
+function toggletom(){
+  if (activepeeping == false){
+    $('#peepcanvas').css('opacity','100%')
+    activepeeping = true;
+    return
+  }
+  $('#peepcanvas').css('opacity', '0%')
+  activepeeping = false;
+  return;
+}
+      function peepwrapper(){
+        toggletom()
+
+
+        var peepcan, ctx, flag = false,
+  peepx = 0,
+  peepy = 0;
+
+
+
+
+          peepcan = document.getElementById('peepcanvas');
+          var myrect = peepcan.getBoundingClientRect();
+          console.log(myrect)
+          ctx = peepcan.getContext("2d");
+          ctx.fillStyle='black';
+
+
+          w = peepcan.width;
+          h = peepcan.height;
+          ctx.fillRect(0,0,w,h)
+
+
+          peepcan.addEventListener("mousemove", function (e) {
+              findxy('move', e)
+          }, false);
+          peepcan.addEventListener("mousedown", function (e) {
+              findxy('down', e)
+          }, false);
+          peepcan.addEventListener("mouseup", function (e) {
+              findxy('up', e)
+          }, false);
+          peepcan.addEventListener("mouseout", function (e) {
+              findxy('out', e)
+          }, false);
+
+
+      function newpeep(){
+        ctx.fillRect(0,0,w,h);
+
+
+
+        ctx.clearRect(currX-40,currY-40,60,40);
+      }
+
+
+
+      function findxy(res, e) {
+          if (res == 'down') {
+              flag = true;
+              currX = e.clientX - myrect.left;
+            currY = e.clientY - myrect.top;
+
+              newpeep();
+            }
+
+          if (res == 'up' || res == 'out') {
+            flag = false;
+            ctx.fillRect(0,0,w,h);
+          }
+
+
+
+          if (res == 'move') {
+              if (flag) {
+
+
+                currX = e.clientX - myrect.left;
+          currY = e.clientY - myrect.top;
+
+                  newpeep();
+
+                };
+              };
+            };
+
+
+      }
+
+
+
+
+
+
+    var canvas, ctx, flag = false,
+        prevX = 0,
+        currX = 0,
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+        activefathands = false;
+        activenocolors = false;
+        activehiddenmouse = false;
+        activereverse = false;
+        activeredact = false;
+        activepeeping = false;
+
+    var x = "black",
+        y = 2;
+
+    function init() {
+
+      var guessinput = document.getElementById('guessinput')
+      guessinput.addEventListener('keydown', function(e){
+        if (e.key == 'Enter'){
+          console.log('guessing')
+          makeguess()
+        }
+      })
+      var canshare = setInterval(save,20)
+        canvas = document.getElementById('drawcan');
+        ctx = canvas.getContext("2d");
+
+        w = canvas.width;
+        h = canvas.height;
+
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e)
+        }, false);
+    }
+    $('.colorbutton').on('click', function(){
+      x = $(this).id()
+    })
+
+    function color(obj) {
+        switch (obj.id) {
+            case "green":
+                x = "green";
+                break;
+            case "blue":
+                x = "blue";
+                break;
+            case "red":
+                x = "red";
+                break;
+            case "yellow":
+                x = "yellow";
+                break;
+            case "orange":
+                x = "orange";
+                break;
+            case "black":
+                x = "black";
+                break;
+            case "white":
+                x = "white";
+                break;
+            case "midboy":
+                y = 8;
+                break;
+            case "thinboy":
+                y = 4;
+                break;
+            case "bigboy":
+                y = 16;
+                break;
+        }
+
+
+    }
+
+    function draw() {
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.strokeStyle = x;
+        ctx.fillStyle = x;
+        ctx.lineWidth = y;
+        ctx.lineCap='round';
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function erase() {
+      ctx.clearRect(0,0,w,h)
+
+    }
+    function fathands(){
+      if (activefathands == false){
+        $('#bigboy').click()
+        $('#midboy').hide()
+        $('#thinboy').hide()
+        activefathands = true;
+        return
+
+      }
+      $('#midboy').show()
+      $('#thinboy').show()
+      activefathands = false;
+      return
+
+
+
+    }
+    function hidemouse(){
+      if (activehiddenmouse == false){
+        document.getElementById('drawcan').style.cursor = 'none';
+        activehiddenmouse = true;
+        return;
+
+      }
+      document.getElementById('drawcan').style.cursor = 'default';
+      activehiddenmouse = false;
+      return
+
+    }
+    function reverse(){
+      if (activereverse == false){
+        activereverse = true;
+        return
+      }
+      activereverse = false;
+      return
+    }
+
+    function classified(){
+      if (activeredact == false){
+        activeredact = true;
+        return
+      }
+      activeredact = false;
+      return
+    }
+
+
+    function nocolors(){
+      if (activenocolors == false){
+        $('#black').click()
+        $('.colorbutton').hide()
+        $('#black').show()
+        activenocolors = true;
+        return
+      }
+      $('.colorbutton').show()
+      activenocolors = false;
+      return;
+    }
+
+
+
+
+
+    function save() {
+        document.getElementById("canvasimg").style.border = "1px solid";
+        var dataURL = canvas.toDataURL();
+        document.getElementById("canvasimg").src = dataURL;
+        document.getElementById("canvasimg").style.display = "inline";
+
+    }
+
+    function findxy(res, e) {
+        if (res == 'down') {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.getBoundingClientRect().left;
+            currY = e.clientY - canvas.getBoundingClientRect().top;
+
+            flag = true;
+            dot_flag = true;
+            if (dot_flag) {
+                ctx.beginPath();
+                ctx.fillStyle = x;
+                ctx.fillRect(currX, currY, 2, 2);
+                ctx.closePath();
+                dot_flag = false;
+            }
+        }
+        if (res == 'up' || res == "out") {
+            flag = false;
+        }
+        if (res == 'move') {
+            if (flag) {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - canvas.getBoundingClientRect().left;
+                currY = e.clientY - canvas.getBoundingClientRect().top;
+                draw();
+            }
+        }
+    }
+    function makeguess(){
+      var guesser = $('#guessinput').val()
+      if (guesser == ''){
+        return
+      }
+      if (activereverse){
+        guesser = reverseString(guesser)
+      }
+      if (activeredact){
+        guesser = '<strong><i>REDACTED</i></strong>'
+      }
+      if (guesser){
+        document.getElementById('textholder').innerHTML+=guesser+'<br>'
+        $('#guessinput').val('')
+
+      }
+    }
+
+
+
+    </script>
+    <body onload="init()">
+      <div id="previewholder">
+        <div class="screentype">Drawer's Screen
+
+        </div>
+        <div class="screentype">Guesser's Screen
+
+        </div>
+
+
+      <div class="canvaswrapper">
+
+        <div class="attackbox">
+
+            <div class="tackname">
+              Johnny Fat-Hands
+
+            </div>
+
+
+
+
+
+          <br>
+          <div class="switchwrapper">
+
+
+          <div class="switchholder">
+            <label class="switch">
+              <input type="checkbox" onchange="fathands()">
+              <span class="slider round"></span>
+            </label>
+
+          </div>
+
+          <br>
+            <div class="tackname">
+              Hidden Mouse
+
+            </div>
+
+
+
+
+
+          <br>
+          <div class="switchholder">
+            <label class="switch">
+              <input type="checkbox" onchange="hidemouse()">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <br>
+            <div class="tackname">
+              Black and White
+
+            </div>
+
+
+
+
+
+          <br>
+          <div class="switchholder">
+            <label class="switch">
+              <input type="checkbox" onchange="nocolors()">
+              <span class="slider round"></span>
+            </label>
+
+          </div>
+
+
+        </div>
+        </div>
+
+
+      <div id="gameholder">
+
+
+      <div id="buttonholder">
+        <div class='colorbutton' id="black" onclick="color(this)"></div>
+<div class='colorbutton' id="green" onclick="color(this)"></div>
+<div class='colorbutton' id="blue" onclick="color(this)"></div>
+<div class='colorbutton' id="red" onclick="color(this)"></div>
+<div class='colorbutton' id="orange" onclick="color(this)"></div>
+<div class='colorbutton' id="yellow" onclick="color(this)"></div>
+
+
+<div class='brushsize' id="thinboy" style="position:relative" onclick="color(this)">
+<div style="position:absolute;top:35%;left:35%;width:6px;height:6px;background:black;border-radius:50%;"></div>
+</div>
+
+<div class='brushsize' id="midboy" style="position:relative" onclick="color(this)">
+<div style="position:absolute;top:25%;left:25%;width:12px;height:12px;background:black;border-radius:50%;"></div>
+</div>
+
+<div class='brushsize' id="bigboy" style="position:relative" onclick="color(this)">
+ <div style="position:absolute;top:10%;left:10%;width:20px;height:20px;background:black;border-radius:50%;" ></div>
+</div>
+
+<button id="trash" onclick="erase()">&#128465;&#65039;</button>
+
+      </div>
+
+
+      <canvas id="drawcan"  width="270" height="220"></canvas>
+</div>
+
+
+</div>
+
+
+<div class="canvaswrapper" id='guesscanwrapper'>
+  <div class="attackbox">
+
+  <div class="tackname">
+  Peeping Tom
+
+  </div>
+
+
+
+
+
+  <br>
+
+
+
+  <div class="switchholder">
+  <label class="switch">
+  <input type="checkbox" onchange="peepwrapper()">
+  <span class="slider round"></span>
+  </label>
+
+  </div>
+
+  <br>
+  <div class="tackname">
+  Classified
+
+  </div>
+
+
+
+
+
+  <br>
+  <div class="switchholder">
+  <label class="switch">
+  <input type="checkbox" onchange="classified()">
+  <span class="slider round"></span>
+  </label>
+  </div>
+
+  <br>
+  <div class="tackname">
+  esreveR
+
+  </div>
+
+
+
+
+
+  <br>
+  <div class="switchholder">
+  <label class="switch">
+  <input type="checkbox" onchange="reverse()">
+  <span class="slider round"></span>
+  </label>
+
+  </div>
+
+
+
+  </div>
+
+
+<div id="picholder">
+  <canvas id="peepcanvas" ></canvas>
+  <!-- <canvas id="covercanvas"></canvas> -->
+
+  <img id="canvasimg" alt="">
+
+
+
+</div>
+
+
+<div id="guessholder">
+  <div id="textholder">
+
+  </div>
+  <input id='guessinput' type="text" name="" value="" autocomplete="off">
+  <button id='guessbutton' type="button" name="button" onclick="makeguess()">Guess</button>
+
+</div>
+
+
+</div>
+</div>
+
+
+    </body>
+    </html>

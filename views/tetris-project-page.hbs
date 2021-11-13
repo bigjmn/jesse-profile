@@ -1,0 +1,148 @@
+
+  <body>
+    <div class="d-flex justify-content-center mt-2 projtitle"><h2>Tetris Buddies</h2></div>
+
+
+
+    <div class="d-flex justify-content-center">
+
+      <div class="modeholder">
+        <h3 class='text-center'>Classic Mode</h3>
+        <img src="images/TBP_allview.png" alt="" class='tetrismodepic responsive'>
+
+
+      </div>
+      <div class="modeholder">
+        <h3 class='text-center'>Self View</h3>
+        <img src="images/TBP_selfview.png" alt="" class='tetrismodepic responsive'>
+
+
+      </div>
+      <div class="modeholder">
+        <h3 class='text-center'>Buddy View</h3>
+        <img src="images/TetrisBuddiesPic.png" alt="" class='tetrismodepic responsive' >
+
+
+      </div>
+
+
+
+    </div>
+    <div class="container-fluid">
+      <div class="d-flex justify-content-center  mb-3">
+
+
+
+
+
+      <div class="context text-end pt-5">the project
+
+      </div>
+      <div class="p-5 content" >
+
+        <p>  Tetris Buddies is an asymmetrical co-op Tetris variant. The usual tetris controls (shift left, shift right rotate) are distributed randomly amongst the team members, who then have to work together to maneuver the piece the way they want. With every new piece, the controls are re-assigned. There are three game modes:</p> <br>
+
+  <p><strong>Classic Mode:</strong> Perfect information - everyone on the team can how the controls are distributed.</>
+  <p><strong>Self View:</strong> Each player can see only his or her own controls.</p>
+<p><strong>
+  Buddy View:</strong> Each player can see everyone else’s controls, but not their own.</p>
+  <p>If you want to play Tetris Buddies, you can do that <a href="https://tetris-buddies.herokuapp.com/">here</a>. Or, check out the <a href="https://github.com/bigjmn/tetris-buddies">GitHub repo.</a> </p>
+
+
+
+
+      </div>
+        </div>
+
+        <div class="d-flex justify-content-center  mb-3">
+
+
+
+
+
+        <div class="context text-end pt-5">what I used
+
+        </div>
+        <div class="p-5 content" >
+
+
+          I used Node JS and Express on the back end, with SocketIO for implementing real time communication. The back end was by far the hardest part of this project.
+<br><br>
+  The real challenge was creating unique game sessions. I wanted each session to be accessible by a unique URL so that the host could just send out a link. This meant dynamically creating routes and corresponding socket namespaces that had to be defined before the host was redirected to their new game session. These routes and namespaces also had to be deleted when the last person disconnected from the session. Basically it involved making a lot of custom middleware which results in the creation of a ‘Lobby’ object that holds all the important session data like the url, the actual socket namespace, a getter for returning connected users, etc. Active lobbies are stored in a list, and filtered out when all users disconnect from the namespace. When a user joins a lobby directly, the server parses the game id from the corresponding get request and searches the list of active lobbies to confirm that the game exists. If it doesn’t, the user is redirected to an error page. When creating a new lobby, the host also selects a privacy setting. If the game is ‘public’ or ‘private’, it is listed on the homepage and can be accessed with a password that the host sets (or doesn’t set, for public rooms.) If the game is ‘hidden’, it can only be reached via direct link.
+<br><br>
+  The front end was much simpler. I mostly used vanilla javascript - canvas for the actual game animation, etc. I used Handlebars as the view engine. It worked well for rendering the home page; the list of (non-hidden) lobby names is passed as the variable and used to create the buttons and forms for those trying to join a game via the homepage. For rendering the actual game room, I found it was simpler to use the newly joined socket connection to fetch the relevant info (the other users and the currently selected game mode.) JQuery was used mostly for modifying the css of player control icons, making the controls that a player didn’t have invisible. It was also used for putting a mask over the whole control panel of certain players in the case of ‘self view’ and ‘buddy view’ games.
+  The socket logic wats pretty straightforward as well. The socket instance on the server side is pretty generous in terms of adding attributes, decorators, etc. This meant that I could give each socket a ‘controls dictionary’ specifying what controls the player could use, and then have it act as its own referee. Server receives a move request from a socket, it checks  the given move in the socket’s controls dictionary. If the move is valid, the server tells everyone to make that move. If not, the server tells everyone to auto-drop the piece.
+
+
+
+
+
+        </div>
+          </div>
+
+          <div class="d-flex justify-content-center  mb-3">
+
+
+
+
+
+          <div class="context text-end pt-5">thoughts
+
+          </div>
+          <div class="p-5 content" >
+
+            Buddy View seems to be most fun. It’s super hard, but I’m actually okay with that.
+<br><br>
+There are people who are really really good at tetris. I would love to see how a team of elite tetris players approached this game. They would probably have predetermined signals, and maybe a priority order in the case of players with overlapping controls.
+<br><br>
+
+There are currently no restrictions on the number of players per team. You could play by yourself, although this would just be standard tetris. Two player games also aren’t that interesting, regardless of the game mode. It’s just too common for one player to have all the controls, at which point the natural thing to do is to have that player handle the piece on their own.
+<br><br>
+
+Three players is much harder, and way more fun. A word of advice: when you set your usernames before the game, use your actual names. The extra second you save not having to remember who is called what is crucial. Just like with two players, it’s usually best to let a player with all the controls handle the piece on their own. The problem is that with three players, this not only occurs less often, but is also harder to communicate quickly and clearly when it does occur. Players A and B might be telling player C that he can do everything, while at the same time player C is yelling to player B that he can only go left. Again, I’m guessing a pinch of pre-game preparation would go a long way here.
+
+I actually haven’t tried playing with more than three players yet. I’m guessing that the games would get more chaotic, more fun, and more, well - short. I’d also imagine that when you have 5 or more players on a team, the game becomes impossible to play without SOME pregame strategizing. But who knows!
+
+
+
+
+
+          </div>
+            </div>
+
+            <div class="d-flex justify-content-center  mb-3">
+
+
+
+
+
+            <div class="context text-end pt-5">next steps
+
+            </div>
+            <div class="p-5 content" >
+
+              Scalability is a bit of a concern. For all the effort that went into enabling separate game sessions, I don’t know how many the server can handle without an unacceptable loss in performance. Somewhere down the road I may have to migrate the game to FireBase or something, which would also provide diagnostic support, security, etc.
+
+I also want to add a couple ‘training wheel’ game options: 1. The controls change every time lines are cleared, rather than for every new piece. 2. An illegal move simply fails to move the piece, rather than auto-drops.
+
+Finally, I want to add a ‘High Scores’ page. This would require some light database support (or of course Firebase, if I moved there) but also would require some thought to design. I figure I would have different tabs to view the high scores based on the different game modes, but I’d want to separate it by team size as well. But even determining team size is tricky, since the number of players can change during the course of the game.
+
+
+
+
+
+            </div>
+              </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+  </body>
+</html>

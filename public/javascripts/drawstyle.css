@@ -1,0 +1,660 @@
+#login{
+
+
+}
+body{
+  width: 400px;
+  height: 260px;
+
+}
+
+
+#loginholder{
+  width: 800px;
+  height: 120px;
+  background-color: rgb(0,180,0);
+  text-align: center;
+}
+
+#redplayers{
+  background-color: red;
+  width: 50%;
+  height: inherit;
+  float: left;
+
+}
+
+#backgroundbaby{
+  width: 800px;
+  height: 600px;
+  position: absolute;
+  z-index: -1;
+
+
+}
+#everyonein{
+  display: none;
+  float: right;
+}
+#waiter{
+  display: none;
+}
+
+#blueplayers{
+  background-color: blue;
+  width: 50%;
+  height: inherit;
+  float: left;
+}
+.playerlist{
+
+  z-index: 2;
+  background-color: white;
+  height: 10%;
+  width: 100px;
+  left:350px;
+
+
+
+}
+
+#attackgraphicarea{
+  background-color: rgb(180,180,180);
+  float: left;
+  width: 200px;
+  height:600px;
+
+}
+
+.attackgraphic{
+
+
+
+
+  float: left;
+
+  width: 200px;
+  height: 178px;
+  border-style: solid;
+  border-width: 1px;
+
+
+
+  text-align: center;
+  display: none;
+
+
+
+  background: #FF4747;
+}
+.oppattackgraphic{
+
+
+
+
+  float: left;
+
+  width: 200px;
+  height: 178px;
+  border-style: solid;
+  border-width: 1px;
+
+
+
+
+  text-align: center;
+  display: none;
+
+
+
+  background: pink;
+}
+
+#clockzone{
+  clear: left;
+  width: 1000px;
+  height: 10px;
+  visibility: hidden;
+
+}
+#clocktime{
+  width:1000px;
+  height: 10px;
+  background-color: red;
+  visibility: hidden;
+}
+
+#textland{
+  width: 200px;
+  height: 600px;
+  float: left;
+  border-width: 1px;
+  border-style: solid;
+}
+#texter{
+  width: 200px;
+  height: 550px;
+  overflow-y:auto;
+  padding: 5px;
+
+}
+
+#mycans{
+  width: 600px;
+  height: 600px;
+  float: left;
+}
+
+.canstyle{
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  display: none;
+
+
+}
+
+#message{
+  width: 193px;
+}
+#can{
+  /* border-style: solid;
+  border-width: 1px; */
+  background-color: white;
+
+
+}
+#can2{
+
+  z-index: 2;
+}
+#opponentzone{
+  position: absolute;
+  width: 200px;
+  height: 600px;
+  left:1015px;
+  top:90px;
+  border-style: solid;
+  border-width: 1px;
+  overflow-y:auto;
+  background-color: rgb(180,180,180);
+}
+
+#canvasimg{
+
+}
+
+#oppimg{
+
+  height: 200px;
+  width:200px;
+  border-radius: medium;
+  background-color: white;
+
+}
+
+#nextround{
+  display: none;
+}
+.colorbutton{
+  width: 24px;
+  height:24px;
+  border-style: solid;
+  border-width: 2px;
+  float: left;
+  border-color: white;
+
+
+
+
+}
+
+#preview{
+  z-index: 6;
+  position: absolute;
+  width: 400px;
+  height: 600px;
+  top:100px;
+  left:500px;
+  display: none;
+  text-align: center;
+
+}
+#scorezone{
+  height: 100px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.scorereport{
+  height: inherit;
+  width: 50%;
+}
+#redscore{
+  background-color: red;
+  float: left;
+  text-align: center;
+  font-size: 40px;
+}
+#bluescore{
+  background-color: lightblue;
+  float: left;
+  text-align:center;
+  font-size: 40px;
+}
+
+#finalreport{
+  z-index: 6;
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top:100px;
+  left:500px;
+  display: none;
+  text-align: center;
+
+}
+#finalscorezone{
+  height: 100px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+#finalscorezone ::after{
+  clear:left;
+
+}
+
+.finalscore{
+  height: inherit;
+  width: 50%;
+}
+#redtotal{
+  background-color: red;
+  float: left;
+  text-align: center;
+  font-size: 40px;
+}
+#bluetotal{
+  background-color: lightblue;
+  float: left;
+  text-align:center;
+  font-size: 40px;
+}
+
+#statzone{
+  margin-left: auto;
+  margin-right: auto;
+  width: inherit;
+}
+
+.statlist{
+  float: left;
+  width: 50%;
+  text-align: right;
+}
+
+
+#redboy{
+  color:red;
+  font-size: 40px;
+}
+
+#blueboy{
+  color:blue;
+  font-size: 40px;
+}
+
+#testclock{
+  float: left;
+  left: 550px;
+  margin-right: auto;
+  height: inherit;
+  position: absolute;
+  font-size: 40px;
+}
+
+.pt{
+  height: inherit;
+  width: 40px;
+  display: none;
+}
+.attackclock{
+
+  width: 150px;
+  height: 15px;
+  background-color: white;
+}
+
+
+
+#trash{
+  width: 28px;
+  height:28px;
+  border-style: none;
+  border-width: 1px;
+  float: left;
+  font-size: 16px;
+  text-align: center;
+  background: white
+
+
+
+}
+#gameholder{
+  float: left;
+  width:300px;
+}
+#wordbox{
+  height: 60px;
+  width: 180px;
+  float: left;
+  text-align: center;
+
+}
+
+.brushsize{
+  width: 24px;
+  height:24px;
+  border-style: solid;
+  border-width: 2px;
+  float: left;
+  border-color: white;
+  background:white;
+}
+.attackbox{
+  margin-top: 20px;
+  float: left;
+  /* border-style: solid;
+  border-width: 1px; */
+  width: 100px;
+  height: 260px;
+}
+
+#topbaby{
+  height: 60px;
+  width: 1200px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#green{
+  background:green;
+}
+#black{
+  background:black;
+
+}
+#yellow{
+  background:yellow;
+
+}
+#blue{
+  background:blue;
+}
+#orange{
+  background:orange;
+}
+#red{
+  background:red;
+}
+#white{
+  background:white;
+  margin-right: 25px;
+}
+#guessbutton{
+  width:inherit;
+
+
+
+}
+#bonustimer{
+  width: 40px;
+  height: 0px;
+  background-color: white;
+  float: left;
+  position: absolute;
+}
+
+#nobonus{
+  width: 40px;
+  height: 60px;
+  background: repeating-linear-gradient(
+  45deg,
+  red,
+  red 10px,
+  white 10px,
+  white 20px
+);
+  float: left;
+  position: absolute;
+  z-index: 2;
+  display: none;
+}
+#timecontainer{
+  width: 40px;
+  height: 60px;
+
+  float: left;
+  border-style: solid;
+  border-width:1px;
+  background-color: gold;
+}
+#bottombaby{
+
+  height: 40px;
+  width: 1100px;
+  border-style: solid;
+  border-width: 1px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+#myteamscore{
+  background-color: lightblue;
+  width: 60px;
+  height: 40px;
+  float: left;
+  font-size: 35px;
+  text-align: center;
+}
+#theirteamscore{
+  background-color: red;
+  width: 60px;
+  height: 40px;
+  float: right;
+  font-size: 35px;
+  text-align: center;
+}
+.pt{
+  width:100px;
+  height: 40px;
+  border-style:solid;
+  border-width: 1px;
+  display: none;
+  text-align: center;
+}
+#mytags{
+  width: 960px;
+  height: 40px;
+  float: left;
+  /* border-style: solid;
+  border-width: 1px; */
+  margin-left: 10px;
+
+}
+
+#gamezone{
+
+display: none;
+
+}
+
+#allplayers{
+  position: absolute;
+  width: 800px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+
+}
+.gameplayers{
+
+  width: inherit;
+  height: 60px;
+  align-items: center;
+  margin-top: 5px;
+
+}
+
+.playertag{
+  width: 200px;
+  height: inherit;
+  margin-left: auto;
+  margin-right: auto;
+
+  background-color: rgb(195,176,145);
+  text-align: center;
+  font-size: 30px;
+  display: none;
+
+}
+.attackholder{
+
+
+  /* border-style: solid; */
+  /* border-width: 1px; */
+  width: 150px;
+
+
+
+}
+.tackname{
+  font-size: 14px;
+
+}
+#buttonholder{
+  margin-left: 0px;
+}
+.attackbutton{
+
+}
+.playercard{
+
+  width: 800px;
+  border-style: solid;
+  border-width: 1px;
+  z-index: 2;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+
+
+
+
+}
+
+
+.playerbutton{
+  background-color: white;
+  width: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+
+}
+
+#passer{
+
+  float: left;
+  width: 160;
+  margin-left: 10px;
+}
+#pass{
+  display: none;
+  width:160px;
+  height: 60px;
+
+
+}
+.switchholder{
+  margin-top: 10px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.tackname{
+  height: 20px;
+
+
+  border-width: 1px;
+
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.tackname{
+  float: left;
+}

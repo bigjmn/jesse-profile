@@ -1,0 +1,292 @@
+<html>
+
+<link rel="stylesheet" href="drawstyle.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <script type="text/javascript">
+
+
+    var canvas, ctx, flag = false,
+        prevX = 0,
+        currX = 0,
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+        activefathands = false;
+        activenocolors = false;
+        activehiddenmouse = false;
+
+    var x = "black",
+        y = 2;
+
+    function init() {
+      $('#black').click()
+      $('#thinboy').click()
+        canvas = document.getElementById('can');
+        ctx = canvas.getContext("2d");
+
+        w = canvas.width;
+        h = canvas.height;
+
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e)
+        }, false);
+    }
+    // $('.colorbutton').on('click', function(){
+    //   x = $(this).id()
+    // })
+
+    function color(obj) {
+      let c = obj.id
+        switch (c) {
+            case "green":
+                x = "green";
+                break;
+            case "blue":
+                x = "blue";
+                break;
+            case "red":
+                x = "red";
+                break;
+            case "yellow":
+                x = "yellow";
+                break;
+            case "orange":
+                x = "orange";
+                break;
+            case "black":
+                x = "black";
+                break;
+            case "white":
+                x = "white";
+                break;
+            case "midboy":
+                y = 8;
+                $('.brushsize').css('border-color', 'white')
+                $('#midboy').css('border-color', 'black')
+
+                return;
+            case "thinboy":
+                y = 4;
+                $('.brushsize').css('border-color', 'white')
+                $('#thinboy').css('border-color', 'black')
+                return;
+            case "bigboy":
+            $('.brushsize').css('border-color', 'white')
+            $('#bigboy').css('border-color', 'black')
+                y = 16;
+                return;
+        }
+        $('.colorbutton').css('border-color', 'white')
+        $('#'+c).css('border-color', 'black')
+
+
+    }
+
+    function draw() {
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.strokeStyle = x;
+        ctx.fillStyle = x;
+        ctx.lineWidth = y;
+        ctx.lineCap='round';
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function erase() {
+      ctx.clearRect(0,0,w,h)
+
+    }
+    function fathands(){
+      if (activefathands == false){
+        $('#bigboy').click()
+        $('#midboy').hide()
+        $('#thinboy').hide()
+        activefathands = true;
+        return
+
+      }
+      $('#midboy').show()
+      $('#thinboy').show()
+      activefathands = false;
+      return
+
+
+
+    }
+    function hidemouse(){
+      if (activehiddenmouse == false){
+        document.getElementById('can').style.cursor = 'none';
+        activehiddenmouse = true;
+        return;
+
+      }
+      document.getElementById('can').style.cursor = 'default';
+      activehiddenmouse = false;
+      return
+
+    }
+
+    function nocolors(){
+      if (activenocolors == false){
+        $('#black').click()
+        $('.colorbutton').hide()
+        $('#black').show()
+        activenocolors = true;
+        return
+      }
+      $('.colorbutton').show()
+      activenocolors = false;
+      return;
+    }
+
+
+
+
+
+    function save() {
+        document.getElementById("canvasimg").style.border = "2px solid";
+        var dataURL = canvas.toDataURL();
+        document.getElementById("canvasimg").src = dataURL;
+        document.getElementById("canvasimg").style.display = "inline";
+    }
+
+    function findxy(res, e) {
+        if (res == 'down') {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.getBoundingClientRect().left;
+            currY = e.clientY - canvas.getBoundingClientRect().top;
+
+            flag = true;
+            dot_flag = true;
+            if (dot_flag) {
+                ctx.beginPath();
+                ctx.fillStyle = x;
+                ctx.fillRect(currX, currY, 2, 2);
+                ctx.closePath();
+                dot_flag = false;
+            }
+        }
+        if (res == 'up' || res == "out") {
+            flag = false;
+        }
+        if (res == 'move') {
+            if (flag) {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - canvas.getBoundingClientRect().left;
+                currY = e.clientY - canvas.getBoundingClientRect().top;
+                draw();
+            }
+        }
+    }
+    </script>
+    <body onload="init()">
+      <div id="gameholder">
+
+
+      <div id="buttonholder">
+        <div class='colorbutton' id="black" onclick="color(this)"></div>
+<div class='colorbutton' id="green" onclick="color(this)"></div>
+<div class='colorbutton' id="blue" onclick="color(this)"></div>
+<div class='colorbutton' id="red" onclick="color(this)"></div>
+<div class='colorbutton' id="orange" onclick="color(this)"></div>
+<div class='colorbutton' id="yellow" onclick="color(this)"></div>
+
+
+<div class='brushsize' id="thinboy" style="position:relative" onclick="color(this)">
+<div style="position:absolute;top:35%;left:35%;width:6px;height:6px;background:black;border-radius:50%;"></div>
+</div>
+
+<div class='brushsize' id="midboy" style="position:relative" onclick="color(this)">
+<div style="position:absolute;top:25%;left:25%;width:12px;height:12px;background:black;border-radius:50%;"></div>
+</div>
+
+<div class='brushsize' id="bigboy" style="position:relative" onclick="color(this)">
+ <div style="position:absolute;top:10%;left:10%;width:20px;height:20px;background:black;border-radius:50%;" ></div>
+</div>
+
+<button id="trash" onclick="erase()">&#128465;&#65039;</button>
+
+      </div>
+
+
+      <canvas id="can" width="280" height="220"></canvas>
+</div>
+<div class="attackbox">
+
+    <div class="tackname">
+      Johnny Fat-hands
+
+    </div>
+
+
+
+
+
+  <br>
+  <div class="switchholder">
+    <label class="switch">
+      <input type="checkbox" onchange="fathands()">
+      <span class="slider round"></span>
+    </label>
+
+  </div>
+
+  <br>
+    <div class="tackname">
+      Hidden Mouse
+
+    </div>
+
+
+
+
+
+  <br>
+  <div class="switchholder">
+    <label class="switch">
+      <input type="checkbox" onchange="hidemouse()">
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <br>
+    <div class="tackname">
+      Black and White
+
+    </div>
+
+
+
+
+
+  <br>
+  <div class="switchholder">
+    <label class="switch">
+      <input type="checkbox" onchange="nocolors()">
+      <span class="slider round"></span>
+    </label>
+
+  </div>
+
+
+</div>
+
+
+    </body>
+    </html>

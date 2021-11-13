@@ -1,0 +1,156 @@
+
+  <body>
+    <div class="d-flex justify-content-center mt-2 projtitle"><h2>Shock and Draw</h2></div>
+
+
+
+    <div class="container-fluid project-header">
+      <iframe id='drawframe' src="/javascripts/drawpreview.html" ></iframe>
+
+
+    </div>
+
+    <div class="container-fluid">
+      <div class="d-flex justify-content-center  mb-3">
+
+
+
+
+
+      <div class="context text-end pt-5">the project
+
+      </div>
+      <div class="p-5 content" >
+        Shock and Draw is an online drawing-and-guessing game. Before the game, players divide themselves into two teams, Red and Blue. At the start of each round, one player on each team is the ‘drawer’, and the others are guessers. The guessers have to guess (via chat window) what their drawer is drawing. If they get it right, the team gets a point, the drawer is given a new prompt, and the game continues. Both teams play at once,  but guessers will automatically be shown the canvas and chat window for their team.
+<br><br>
+Whenever a drawer gets a new prompt, their team’s bonus timer is reset. If the team guesses the prompt within the bonus period, the opposing team is hit by a random attack. Both sides see the attack graphic, which shows the attack timer and the attack rules. There are currently six different attacks, three of which affect the drawer and three the guessers.
+<br><br>
+<span style="font-weight:bold">Attacks targeting the drawer:</span>
+
+<br><br>
+<span style='text-decoration: underline'>The Taker</span>
+
+<br>
+Drawer is unable to use colors.
+<br><br>
+<span style='text-decoration: underline'>Johnny Fat-Hands</span>
+
+<br>
+Drawer must use the biggest brush size.
+<br><br>
+<span style='text-decoration: underline'>HideMau5</span>
+
+<br>
+Drawer can’t see the cursor.
+<br><br>
+<span style="font-weight:bold">Attacks targeting the guessers:</span>
+<br><br>
+<span style='text-decoration: underline'>esreveR</span>
+
+<br>
+Guesses all come in backwards.
+<br><br>
+<span style='text-decoration: underline'>Classified</span>
+<br>
+Guesses can’t be seen by anyone on the team (are logged as REDACTED).
+<br><br>
+<span style='text-decoration: underline'>Peeping Tom</span>
+<br>
+Guessers have their view of the canvas blocked by a black filter. Clicking the filter reveals a small circular section of the canvas, centered at where the user clicked. The user must drag the mouse around to view different parts of the canvas.
+<br><br>
+Attacks last for 30 seconds each and can overlap. They are chosen at random, but a team can’t be hit by an attack already affecting it. This technically means a team being affected by all six attacks at once can’t be hit until one of their attacks expires. That’s fine - they’re in enough trouble already.
+
+A drawer can ‘pass’ on a term, but doing so results in an attack on his own team. Attacks don’t carry over between rounds.
+
+At the end of each round, the team point totals are updated. The team with the most points at the end of the final round wins.
+
+
+
+
+
+
+
+      </div>
+        </div>
+
+        <div class="d-flex justify-content-center  mb-3">
+
+
+
+
+
+        <div class="context text-end pt-5">what I used
+
+        </div>
+        <div class="p-5 content" >
+          I built the back end using Node JS and Express. I used SocketIO for communications. This was my first time using SocketIO, and in fact my first project that had a significant back end of any kind. I found that learning the relevant API’s was only half the battle - just as important was setting up a proper coding environment. Basic tools like nodemon, but also configuring Atom in a way that best suited me.
+<br><br>
+          I used a lot of vanilla Javascript on the front end, as well as JQuery. I used JQuery for showing and hiding sections of the app as needed and of course for selector convenience, but also to set the timeouts for the attacks and for the bonus clock. The animation of the actual ‘time remaining’ bar was given the duration of the attack, and took as a callback function the relevant socket call.
+          <br><br>
+
+          I compiled my list of drawing prompts from a few different pictionary word lists. I made sure to take the ‘easy’ words - I learned from a very early play test that the attacks - particularly the drawer attacks - make harder words nearly impossible.
+          <br><br>
+
+
+
+
+
+
+        </div>
+          </div>
+
+          <div class="d-flex justify-content-center  mb-3">
+
+
+
+
+
+          <div class="context text-end pt-5">thoughts
+
+          </div>
+          <div class="p-5 content" >
+            The game is pretty fun! Its not ready for deployment yet (more on that further down) but the actual game mechanics work well. Some of the attacks synergize particularly well when they stack up. For example, Johnny Fat-Hands is probably the toughest attack to deal with in the game, but a resourceful drawer can still draw a decent picture by strategically overlapping colors. But combined with the Taker (which is a reference to the book The Giver - kind of a deep cut) it can be brutal. Classified and esreveR also combine nicely. esreveR actually might need some tweaking. There’s a bit of a workaround - if a guesser types their guess in normally first, the chat will show them their perfectly reversed word, which they can then type easily to make their real guess. Classified makes this impossible, due to it ‘hiding’ the guess from the whole team - the guesser themself included.
+
+
+
+
+
+
+
+          </div>
+            </div>
+
+            <div class="d-flex justify-content-center  mb-3">
+
+
+
+
+
+            <div class="context text-end pt-5">next steps
+
+            </div>
+            <div class="p-5 content" >
+              The app currently can only handle one session at a time. I’m going to restructure the back end so multiple games can run concurrently, either by using the framework I created for Tetris Buddies or by configuring it with Firebase. But first I need to make some changes.
+<br><br>
+There are some basic things that the game can’t handle, such as when the teams are unbalanced. Players quitting during the session also causes a problem, even when the game hasn’t started yet. I also want to rebuild the front end using React. This will obviously take some time, but I think it’ll be worth it; it would allow me to easily and cleanly create and implement new attacks.
+
+
+
+
+
+
+
+            </div>
+              </div>
+
+
+
+
+
+
+    </div>
+
+
+
+
+  </body>
