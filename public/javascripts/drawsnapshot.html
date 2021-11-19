@@ -13,6 +13,7 @@
         prevY = 0,
         currY = 0,
         dot_flag = false;
+        texttoggle = true;
         activefathands = false;
         activenocolors = false;
         activehiddenmouse = false;
@@ -21,13 +22,17 @@
         y = 2;
 
     function init() {
+
       $('#black').click()
       $('#thinboy').click()
         canvas = document.getElementById('can');
         ctx = canvas.getContext("2d");
 
+
         w = canvas.width;
         h = canvas.height;
+        ctx.font='italic 20px Arial';
+        ctx.fillText('Draw Something!', w/4,30);
 
         canvas.addEventListener("mousemove", function (e) {
             findxy('move', e)
@@ -166,6 +171,10 @@
 
     function findxy(res, e) {
         if (res == 'down') {
+            if (texttoggle){
+              $('#trash').click()
+              texttoggle = false
+            }
             prevX = currX;
             prevY = currY;
             currX = e.clientX - canvas.getBoundingClientRect().left;
