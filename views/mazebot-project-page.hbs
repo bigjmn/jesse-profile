@@ -27,7 +27,7 @@
   The graph tracks the number of steps it takes Mazebot to complete the maze. Mazebot will usually get worse before he gets better. Eventually Mazebot will complete the maze the same way every time - the fastest way. Use the slider to set Mazebot’s step speed. For big mazes (and even not so big mazes) you’ll want this set pretty high.
         </p>
 
-<p>Check out the <a href="http://github.com/bigjmn/q-maze-bot">Github repo.</a> </p>
+<p>Check out the <a id='gitlink' href="http://github.com/bigjmn/q-maze-bot">Github repo.</a> </p>
 
 
 
@@ -116,6 +116,11 @@ The issue with maze solving: it’s static. Which makes it pretty boring. The mi
 
 
     </div>
+    <script>
+    $('#gitlink').on('click', () => {
+      location.assign("http://github.com/bigjmn/q-maze-bot")
+    })
+    </script>
 
 
 
