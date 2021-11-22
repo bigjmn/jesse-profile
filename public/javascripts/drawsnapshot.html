@@ -23,6 +23,11 @@
 
     function init() {
 
+      texttoggle = true;
+      activefathands = false;
+      activenocolors = false;
+      activehiddenmouse = false;
+
       $('#black').click()
       $('#thinboy').click()
         canvas = document.getElementById('can');
@@ -168,7 +173,7 @@
         document.getElementById("canvasimg").src = dataURL;
         document.getElementById("canvasimg").style.display = "inline";
     }
-    
+
 
     function findxy(res, e) {
         if (res == 'down') {
@@ -205,7 +210,7 @@
         }
     }
     </script>
-    <body onload="init()">
+    <body onload="init()" height='250'>
       <div id="gameholder">
 
 
